@@ -193,7 +193,7 @@ class YiiDebugToolbarRoute extends CLogRoute
         $this->getToolbarWidget()->run();
     }
 
-    private function checkContentTypeWhitelist()
+    public function checkContentTypeWhitelist()
     {
       $contentType = '';
 

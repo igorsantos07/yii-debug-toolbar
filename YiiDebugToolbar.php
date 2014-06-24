@@ -18,6 +18,8 @@ Yii::import('yii-debug-toolbar.widgets.*');
  * @version $Id$
  * @package YiiDebugToolbar
  * @since 1.1.7
+ *
+ * @property YiiDebugToolbarRoute $owner Usually the owner of this widget is the debug-toolbar log route
  */
 class YiiDebugToolbar extends CWidget
 {
@@ -111,9 +113,11 @@ class YiiDebugToolbar extends CWidget
      */
     public function run()
     {
-        $this->render('main', array(
-            'panels' => $this->getPanels()
-        ));
+        if (!($this->owner instanceof YiiDebugToolbarRoute) || $this->owner->checkContentTypeWhitelist()) {
+            $this->render('main', array(
+                'panels' => $this->getPanels()
+            ));
+        }
     }
 
     /**
